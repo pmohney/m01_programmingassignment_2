@@ -1,0 +1,43 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class ArrayComparison {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[][] ary1 = new int[3][3];
+        int[][] ary2 = new int[3][3];
+//Creates two 3x3 arrays
+
+        System.out.println("First Array");
+        readArray(scanner, ary1);
+//Reads first arrays values
+
+        System.out.println("Second Array");
+        readArray(scanner, ary2);
+//Reads second arrays values
+
+        if (equals(ary1, ary2)) {
+            System.out.println("Arrays are identical.");
+        } else {
+            System.out.println("Arrays are not identical.");
+        }
+    }
+//Checks if two arrays are identical or not
+
+    public static void readArray(Scanner scanner, int[][] array) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                array[i][j] = scanner.nextInt();
+            }
+        }
+    }
+//Reads and stores user inputted values into arrays
+
+    public static boolean equals(int[][] m1, int[][] m2) {
+        int[] fary1 = Arrays.stream(m1).flatMapToInt(Arrays::stream).sorted().toArray();
+        int[] fary2 = Arrays.stream(m2).flatMapToInt(Arrays::stream).sorted().toArray();
+
+        return Arrays.equals(fary1, fary2);
+    }
+}
+//Formats arrays to check if identical or not
