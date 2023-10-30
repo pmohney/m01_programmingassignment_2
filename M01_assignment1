@@ -1,7 +1,7 @@
 // 10/26/23
 // Pierce Mohney
 // SDEV 200
-// Assignment 4
+// Assignment 1
 //This program will use preset values from the textbook and convert meters to feet and feet to meters, than put them in a side by side graph with headings over values
 
 import java.text.DecimalFormat;
