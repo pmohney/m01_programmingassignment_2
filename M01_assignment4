@@ -1,0 +1,43 @@
+// 10/26/23
+// Pierce Mohney
+// SDEV 200
+// Assignment 4
+//This program will use preset values from the textbook and convert meters to feet and feet to meters, than put them in a side by side graph with headings over values
+
+import java.text.DecimalFormat;
+
+public class FtoMConversion {
+    public static void main(String[] args) {
+        double[] feetValues = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+        double[] meterValues = {20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0, 65.0};
+//Preset values to convert
+
+        DecimalFormat df = new DecimalFormat("#.###");
+
+        System.out.printf("%-10s  %-10s | %-10s  %-10s%n", "Feet", "Meters", "Meters", "Feet");
+        System.out.println("-----------------------|--------------------------------");
+//Table header for output
+
+        for (int i = 0; i < feetValues.length; i++) {
+            double feet = feetValues[i];
+            double meters1 = ConversionUtil.footToMeter(feet);
+            double meters2 = meterValues[i];
+            double feet2 = ConversionUtil.meterToFoot(meters2);
+            
+            System.out.printf("%-10s  %-10s | %-10s  %-10s%n", df.format(feet), df.format(meters1), df.format(meters2), df.format(feet2));
+        }
+    }
+}
+//Formats preset values and converted values side by side
+
+class ConversionUtil {
+    public static double footToMeter(double foot) {
+        return foot * 0.3048; // 1 foot is approximately 0.3048 meters
+    }
+//Converts feet to meters
+
+    public static double meterToFoot(double meter) {
+        return meter / 0.3048; // 1 meter is approximately 3.28084 feet
+    }
+}
+//Converts meters to feet
