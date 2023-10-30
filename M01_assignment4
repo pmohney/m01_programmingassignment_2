@@ -1,0 +1,100 @@
+// 10/29/23
+// Pierce Mohney
+// SDEV 200
+// Assignment 4
+//This program will use preset values of polygons and then output the perimeter and area of each preset polygon.
+
+public class PolygonCreator {
+    private int n;
+    private double side;
+    private double x;
+    private double y;
+//Sets the numbers of polygon sides, length of each side, x coordinate, and y coordinate
+
+    public static void main(String[] args) {
+        PolygonCreator defaultpol = new PolygonCreator();
+        System.out.println("the area is: " + defaultpol.getArea() + " the perimeter is " + defaultpol.getPerimeter());
+
+        PolygonCreator mypol = new PolygonCreator(6, 4);
+        System.out.println("the area is: " + mypol.getArea() + " the perimeter is " + mypol.getPerimeter());
+
+        PolygonCreator yourpol = new PolygonCreator(10, 4, 5.6, 7.8);
+        System.out.println("the area is: " + yourpol.getArea() + " the perimeter is " + yourpol.getPerimeter());
+    }
+//Outputs area and perimeter of each polygon
+
+    PolygonCreator() {
+        n = 3;
+        side = 1;
+        x = 0;
+        y = 0;
+    }
+//Default polygon constructor
+
+    PolygonCreator(int n, double side) {
+        this.n = n;
+        this.side = side;
+        x = 0;
+        y = 0;
+    }
+//Constructor for polygon with sides and length
+
+    PolygonCreator(int n, double side, double x, double y) {
+        this.n = n;
+        this.side = side;
+        this.x = x;
+        this.y = y;
+    }
+//Constructor for polygon with sides, length, and x and y coordinates
+
+    public void setN(int newn) {
+        n = newn;
+    }
+//Sets number of sides
+
+    public int getN() {
+        return n;
+    }
+//Gets number of sides
+
+    public void setSide(double newside) {
+        side = newside;
+    }
+//Sets length of side
+
+    public double getSide() {
+        return side;
+    }
+//Gets length of side
+
+    public void setX(double newx) {
+        x = newx;
+    }
+//Sets x-coordinate
+
+    public double getX() {
+        return x;
+    }
+//Gets x-coordinate
+
+    public void setY(double newy) {
+        y = newy;
+    }
+//Sets y-coordinate
+
+    public double getY() {
+        return y;
+    }
+//Gets y-coordinate
+
+    public double getPerimeter() {
+        return n * side;
+    }
+//Calculates perimeter of polygon
+
+    public double getArea() {
+        double s2 = side * side;
+        return (n * s2) / (4 * Math.tan(Math.PI / n));
+    }
+}
+//Calculates area of polygon
