@@ -1,0 +1,70 @@
+// 10/26/23
+// Pierce Mohney
+// SDEV 200
+// Assignment 2
+//This program will take user inputted credit card numbers and return if they are valid or invalid.  
+
+import java.util.Scanner;
+
+public class CreditCardValidator {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a credit card number: ");
+        long cn = input.nextLong();
+        input.close();
+//Recieves input from user 
+
+        if (isValid(cn)) {
+            System.out.println("Valid");
+        } else {
+            System.out.println("Invalid");
+// Uses isValid method to return correct output
+        }
+    }
+
+    public static boolean isValid(long numb) {
+        int total = sumOfDoubleEvenPlace(numb) + sumOfOddPlace(numb);
+        return (total % 10 == 0) && prefixMatched(numb, 4);
+    }
+// Calculates sum of even and odd numbers 
+// Checks if the total is divisible by ten and if it starts with a valid number
+
+    public static int sumOfDoubleEvenPlace(long numb) {
+        int sum = 0;
+        String numStr = Long.toString(numb);
+        for (int i = numStr.length() - 2; i >= 0; i -= 2) {
+        int digit = getDigit(Integer.parseInt(String.valueOf(numStr.charAt(i))) * 2);
+            sum += digit;
+        }
+        return sum;
+    }
+//Calculates the sum of even digits
+//iterates through second to last number moving 2 positions
+
+    public static int getDigit(int numb) {
+        if (numb < 10) {
+            return numb;
+        } else {
+            return (numb % 10) + (numb / 10);
+        }
+    }
+//Gets the sum of the digits and adds the digits together
+
+    public static int sumOfOddPlace(long numb) {
+        int sum = 0;
+        String numStr = Long.toString(numb);
+        for (int i = numStr.length() - 1; i >= 0; i -= 2) {
+            sum += Integer.parseInt(String.valueOf(numStr.charAt(i)));
+        }
+        return sum;
+    }
+//Calculates the sum of the all the odd digits
+//Iterates through last number moving 2 positions along with adding the digit to the sum
+
+    public static boolean prefixMatched(long numb, int d) {
+        String numStr = Long.toString(numb);
+        String prefix = Integer.toString(d);
+        return numStr.startsWith(prefix);
+    }
+}
+//Verifies card number starts with correct prefix 
